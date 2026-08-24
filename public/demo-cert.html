@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>デジタル証明書（サンプル）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F3ED;
+  --card:#FFFFFF;
+  --brand:#33604F;
+  --brand-deep:#24463A;
+  --honey:#E39B3B;
+  --honey-soft:#F8E8CF;
+  --ink:#26221E;
+  --muted:#8A817A;
+  --line:#E8E2D8;
+  --radius:18px;
+  font-size:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  background:#DDD6CA;
+  color:var(--ink);
+  display:flex;justify-content:center;
+  line-height:1.6;
+}
+.phone{
+  width:100%;max-width:430px;min-height:100dvh;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  position:relative;
+}
+.sample-ribbon{
+  background:var(--brand-deep);color:#EAF3EE;
+  text-align:center;font-size:.68rem;letter-spacing:.12em;
+  padding:6px 10px;
+}
+.head{
+  padding:18px 20px 6px;
+}
+.head .kicker{
+  font-size:.62rem;letter-spacing:.16em;color:var(--honey);font-weight:700;
+}
+.head h1{
+  font-family:"Zen Maru Gothic",sans-serif;font-weight:900;
+  font-size:1.2rem;color:var(--brand);margin-top:4px;
+}
+.head p{
+  font-size:.72rem;color:var(--muted);margin-top:2px;
+}
+main{flex:1;padding:8px 18px 40px}
+.pet-card{
+  background:linear-gradient(150deg,var(--brand) 0%,var(--brand-deep) 90%);
+  border-radius:22px;color:#F4F8F5;
+  padding:20px;position:relative;overflow:hidden;
+  box-shadow:0 10px 24px rgba(36,70,58,.22);
+  margin-top:10px;
+}
+.pet-card::after{
+  content:"🐾";position:absolute;right:-8px;bottom:-14px;
+  font-size:6rem;opacity:.10;transform:rotate(-12deg);
+}
+.pet-top{display:flex;gap:14px;align-items:center}
+.pet-avatar{
+  width:64px;height:64px;border-radius:50%;
+  background:#FBEFDD;display:flex;align-items:center;justify-content:center;
+  font-size:2.1rem;flex-shrink:0;border:3px solid rgba(255,255,255,.55);
+}
+.pet-name{font-family:"Zen Maru Gothic",sans-serif;font-weight:900;font-size:1.35rem;line-height:1.2}
+.pet-sub{font-size:.72rem;opacity:.85;margin-top:2px}
+.pet-foot{
+  margin-top:14px;font-size:.68rem;opacity:.9;
+  display:flex;align-items:center;gap:6px;
+}
+.pet-foot .dot{width:6px;height:6px;border-radius:50%;background:var(--honey);flex-shrink:0}
+.sec-title{
+  font-family:"Zen Maru Gothic",sans-serif;font-weight:700;
+  font-size:.9rem;margin:20px 2px 10px;
+}
+.card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:14px 16px;
+}
+.cert{display:flex;align-items:center;gap:12px;padding:9px 0}
+.cert+.cert{border-top:1px dashed var(--line)}
+.cert .c-ico{
+  width:42px;height:42px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.25rem;
+  background:#EFEAE0;
+}
+.cert h5{font-size:.82rem;font-weight:700}
+.cert p{font-size:.68rem;color:var(--muted)}
+.note{
+  font-size:.7rem;color:var(--muted);margin-top:12px;padding:0 2px;line-height:1.7;
+}
+.line-btn{
+  margin-top:18px;width:100%;border:none;border-radius:14px;
+  background:#06C755;color:#fff;font-weight:700;font-family:inherit;
+  padding:14px;font-size:.9rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.line-btn:active{opacity:.85}
+.disclaimer{
+  margin-top:20px;font-size:.66rem;color:var(--muted);
+  background:var(--honey-soft);border:1px solid #eecf9f;border-radius:12px;
+  padding:12px 14px;line-height:1.7;
+}
+.toast{
+  position:fixed;left:50%;bottom:36px;transform:translateX(-50%) translateY(20px);
+  background:var(--brand-deep);color:#fff;font-size:.75rem;
+  padding:10px 18px;border-radius:99px;opacity:0;pointer-events:none;
+  transition:all .3s ease;white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="sample-ribbon">SAMPLE — デジタル証明書のイメージです</div>
+
+  <header class="head">
+    <div class="kicker">DIGITAL CERTIFICATE</div>
+    <h1>デジタル証明書</h1>
+    <p>紙の書類を、スマホで渡す・見せる・共有する。</p>
+  </header>
+
+  <main>
+    <section class="pet-card">
+      <div class="pet-top">
+        <div class="pet-avatar">🐶</div>
+        <div>
+          <h2 class="pet-name">サクラ</h2>
+          <p class="pet-sub">トイプードル ・ 女の子 ・ 2026年5月2日生まれ</p>
+        </div>
+      </div>
+      <div class="pet-foot">
+        <span class="dot"></span>
+        ○○犬舎（ブリーダー名はご相談で調整できます）
+      </div>
+    </section>
+
+    <h3 class="sec-title">📜 お渡しする証明書</h3>
+    <div class="card">
+      <div class="cert">
+        <div class="c-ico">🏅</div>
+        <div><h5>血統書</h5><p>JKC ・ 発行日：出産後60日以内</p></div>
+      </div>
+      <div class="cert">
+        <div class="c-ico">🩺</div>
+        <div><h5>健康診断書</h5><p>お渡し前 獣医師チェック済み</p></div>
+      </div>
+      <div class="cert">
+        <div class="c-ico">💉</div>
+        <div><h5>ワクチン接種証明</h5><p>1回接種済み ・ 次回接種の目安つき</p></div>
+      </div>
+      <div class="cert">
+        <div class="c-ico">🔖</div>
+        <div><h5>マイクロチップ登録</h5><p>登録番号を記載</p></div>
+      </div>
+    </div>
+
+    <p class="note">
+      紙の書類をなくしても大丈夫。このリンクを保存しておけば、いつでもスマホで確認・提示できます。お渡しの際にLINEで送るだけで完了します。
+    </p>
+
+    <button class="line-btn" onclick="shareLine()">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path fill="#fff" d="M12 3C6.98 3 3 6.36 3 10.5c0 3.7 3.14 6.79 7.4 7.39.29.06.68.2.78.45.09.23.06.58.03.81l-.13.79c-.04.23-.18.9.79.49.97-.41 5.23-3.08 7.14-5.27C20.4 13.6 21 12.13 21 10.5 21 6.36 17.02 3 12 3Z"/>
+      </svg>
+      この証明書をLINEで送る
+    </button>
+
+    <p class="disclaimer">
+      ※ これはサンプルです。実際は犬種・生年月日・接種歴・ブリーダー名などをお客様ごとに差し替えてお渡しできます。証明書の種類も追加・変更が可能です。
+    </p>
+  </main>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+function shareLine(){
+  const text = "🐶 サクラの証明書一式（血統書・健康診断書・ワクチン接種証明・マイクロチップ登録）をお送りします。\nこのリンクからいつでもご確認いただけます。\n" + window.location.href;
+  const url = "https://line.me/R/msg/text/?" + encodeURIComponent(text);
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+</script>
+</body>
+</html>
