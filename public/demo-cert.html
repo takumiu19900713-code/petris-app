@@ -120,11 +120,12 @@ main{flex:1;padding:8px 18px 40px}
 .photo-card{display:flex;flex-direction:column;align-items:center;gap:10px}
 .photo-frame{
   width:100%;aspect-ratio:4/3;border-radius:14px;
-  background:linear-gradient(150deg,var(--brand) 0%,var(--brand-deep) 90%);
+  background:radial-gradient(120% 130% at 50% 20%,#ffffff 0%,#f3ede2 55%,#ead9bd 100%);
+  border:1px solid var(--line);
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 6px 16px rgba(36,70,58,.18);
+  box-shadow:0 6px 16px rgba(36,70,58,.1);
 }
-.photo-frame span{font-size:4.5rem}
+.photo-frame span{font-size:4.5rem;filter:drop-shadow(0 6px 10px rgba(36,70,58,.18))}
 .photo-caption{font-size:.7rem;color:var(--muted);align-self:flex-start}
 .print-btn{
   display:block;margin:0 0 10px auto;font-size:.7rem;color:var(--brand);
