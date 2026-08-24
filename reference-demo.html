@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ペトリス手帳（デモ）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F3ED;
+  --card:#FFFFFF;
+  --brand:#33604F;
+  --brand-deep:#24463A;
+  --honey:#E39B3B;
+  --honey-soft:#F8E8CF;
+  --ink:#26221E;
+  --muted:#8A817A;
+  --line:#E8E2D8;
+  --ok:#4E8A6B;
+  --radius:18px;
+  font-size:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  background:#DDD6CA;
+  color:var(--ink);
+  display:flex;justify-content:center;
+  line-height:1.6;
+}
+.phone{
+  width:100%;max-width:430px;min-height:100dvh;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+.demo-ribbon{
+  background:var(--brand-deep);color:#EAF3EE;
+  text-align:center;font-size:.68rem;letter-spacing:.12em;
+  padding:6px 10px;
+}
+/* ---------- header ---------- */
+.app-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px 10px;
+}
+.logo{
+  font-family:"Zen Maru Gothic",sans-serif;font-weight:900;
+  font-size:1.15rem;color:var(--brand);letter-spacing:.04em;
+  display:flex;align-items:center;gap:8px;
+}
+.logo .paw{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--brand);color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:.9rem;
+}
+.head-store{font-size:.66rem;color:var(--muted);text-align:right;line-height:1.4}
+/* ---------- screens ---------- */
+.screen{display:none;flex:1;overflow-y:auto;padding:4px 18px 108px;animation:fadeIn .25s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.screen{animation:none}}
+/* ---------- home: pet card ---------- */
+.pet-card{
+  background:linear-gradient(150deg,var(--brand) 0%,var(--brand-deep) 90%);
+  border-radius:22px;color:#F4F8F5;
+  padding:20px 20px 16px;position:relative;overflow:hidden;
+  box-shadow:0 10px 24px rgba(36,70,58,.22);
+}
+.pet-card::after{
+  content:"🐾";position:absolute;right:-8px;bottom:-14px;
+  font-size:6rem;opacity:.10;transform:rotate(-12deg);
+}
+.pet-top{display:flex;gap:14px;align-items:center}
+.pet-avatar{
+  width:72px;height:72px;border-radius:50%;
+  background:#FBEFDD;display:flex;align-items:center;justify-content:center;
+  font-size:2.4rem;flex-shrink:0;border:3px solid rgba(255,255,255,.55);
+}
+.pet-name{font-family:"Zen Maru Gothic",sans-serif;font-weight:900;font-size:1.5rem;line-height:1.2}
+.pet-sub{font-size:.75rem;opacity:.85;margin-top:2px}
+.pet-meta{
+  display:flex;gap:0;margin-top:16px;
+  background:rgba(255,255,255,.12);border-radius:14px;padding:10px 0;
+}
+.pet-meta div{flex:1;text-align:center}
+.pet-meta div+div{border-left:1px solid rgba(255,255,255,.18)}
+.pet-meta b{display:block;font-size:1.05rem;font-family:"Zen Maru Gothic",sans-serif}
+.pet-meta span{font-size:.62rem;opacity:.8;letter-spacing:.08em}
+.welcome-tag{
+  margin-top:14px;font-size:.68rem;
+  display:flex;align-items:center;gap:6px;opacity:.9;
+}
+.welcome-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--honey)}
+/* ---------- section ---------- */
+.sec-title{
+  font-family:"Zen Maru Gothic",sans-serif;font-weight:700;
+  font-size:.95rem;margin:22px 2px 10px;display:flex;align-items:center;gap:8px;
+}
+.sec-title small{font-weight:500;color:var(--muted);font-size:.68rem;margin-left:auto}
+.card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:16px;margin-bottom:12px;
+}
+/* guarantee */
+.guarantee{display:flex;gap:12px;align-items:center}
+.g-stamp{
+  width:58px;height:58px;border-radius:50%;flex-shrink:0;
+  border:2.5px solid var(--ok);color:var(--ok);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:"Zen Maru Gothic",sans-serif;font-weight:900;font-size:.62rem;
+  transform:rotate(-8deg);
+}
+.g-stamp b{font-size:.95rem}
+.guarantee h4{font-size:.88rem;font-weight:700}
+.guarantee p{font-size:.72rem;color:var(--muted);margin-top:2px}
+.g-bar{height:6px;background:#EFEAE1;border-radius:3px;margin-top:8px;overflow:hidden}
+.g-bar i{display:block;height:100%;width:78%;background:var(--ok);border-radius:3px}
+/* todo list */
+.todo{display:flex;align-items:center;gap:12px;padding:11px 2px}
+.todo+.todo{border-top:1px dashed var(--line)}
+.todo .ico{
+  width:38px;height:38px;border-radius:12px;flex-shrink:0;
+  background:var(--honey-soft);display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.todo h5{font-size:.82rem;font-weight:700}
+.todo p{font-size:.7rem;color:var(--muted)}
+.todo .when{margin-left:auto;font-size:.68rem;color:var(--honey);font-weight:700;white-space:nowrap}
+/* quick actions */
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.quick button{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:12px 4px 10px;font-family:inherit;font-size:.66rem;color:var(--ink);
+  display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;
+}
+.quick button span{font-size:1.25rem}
+.quick button:active{background:var(--honey-soft)}
+/* ---------- records ---------- */
+.chart-card h4{font-size:.85rem;font-weight:700}
+.chart-card .now{
+  font-family:"Zen Maru Gothic",sans-serif;font-weight:900;font-size:1.7rem;color:var(--brand);
+}
+.chart-card .now small{font-size:.8rem;font-weight:700;color:var(--muted)}
+.chart-wrap{margin-top:6px}
+.log{display:flex;gap:12px;padding:11px 2px;align-items:baseline}
+.log+.log{border-top:1px dashed var(--line)}
+.log .d{font-size:.68rem;color:var(--muted);width:52px;flex-shrink:0}
+.log .t{font-size:.8rem}
+.log .tag{
+  margin-left:auto;font-size:.62rem;padding:2px 8px;border-radius:99px;
+  background:#EDF3EF;color:var(--brand);font-weight:700;white-space:nowrap;
+}
+/* ---------- certificates ---------- */
+.cert{
+  display:flex;align-items:center;gap:12px;
+}
+.cert+.cert{margin-top:10px}
+.cert .c-ico{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  background:#EFEAE0;
+}
+.cert h5{font-size:.84rem;font-weight:700}
+.cert p{font-size:.68rem;color:var(--muted)}
+.cert .open{
+  margin-left:auto;font-size:.7rem;color:var(--brand);font-weight:700;
+  border:1.5px solid var(--brand);border-radius:99px;padding:4px 12px;background:none;cursor:pointer;
+  font-family:inherit;
+}
+.cert-note{font-size:.68rem;color:var(--muted);margin-top:10px;padding:0 4px}
+/* ---------- store ---------- */
+.store-hero{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px;display:flex;gap:12px;align-items:center;
+}
+.store-hero .s-ico{font-size:1.8rem}
+.store-hero h4{font-size:.88rem;font-weight:700}
+.store-hero p{font-size:.7rem;color:var(--muted)}
+.coupon{
+  border:1.5px dashed var(--honey);background:#FDF7EC;
+  border-radius:var(--radius);padding:14px 16px;margin-top:12px;
+  display:flex;align-items:center;gap:12px;
+}
+.coupon .off{
+  font-family:"Zen Maru Gothic",sans-serif;font-weight:900;color:var(--honey);
+  font-size:1.3rem;flex-shrink:0;
+}
+.coupon h5{font-size:.8rem;font-weight:700}
+.coupon p{font-size:.66rem;color:var(--muted)}
+/* premium */
+.premium{
+  margin-top:18px;border-radius:var(--radius);overflow:hidden;
+  background:linear-gradient(140deg,#3A2E1C,#5C4423);color:#F7EFDF;
+  padding:18px;position:relative;
+}
+.premium .p-tag{
+  display:inline-block;font-size:.6rem;letter-spacing:.14em;
+  background:var(--honey);color:#3A2E1C;font-weight:700;
+  border-radius:99px;padding:3px 10px;margin-bottom:8px;
+}
+.premium h4{font-family:"Zen Maru Gothic",sans-serif;font-weight:900;font-size:1.05rem}
+.premium ul{list-style:none;margin-top:10px}
+.premium li{font-size:.74rem;padding:5px 0;display:flex;gap:8px;align-items:baseline}
+.premium li::before{content:"✓";color:var(--honey);font-weight:900}
+.premium .price{margin-top:12px;font-size:.8rem}
+.premium .price b{font-size:1.25rem;font-family:"Zen Maru Gothic",sans-serif}
+.premium button{
+  margin-top:12px;width:100%;border:none;border-radius:12px;
+  background:var(--honey);color:#3A2E1C;font-weight:700;font-family:inherit;
+  padding:12px;font-size:.85rem;cursor:pointer;
+}
+/* ---------- tab bar ---------- */
+.tabbar{
+  position:absolute;left:0;right:0;bottom:0;
+  background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+  border-top:1px solid var(--line);
+  display:flex;padding:8px 6px calc(10px + env(safe-area-inset-bottom));
+}
+.tabbar button{
+  flex:1;background:none;border:none;font-family:inherit;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-size:.62rem;color:var(--muted);padding:4px 0;
+}
+.tabbar button span{font-size:1.25rem;line-height:1}
+.tabbar button.on{color:var(--brand);font-weight:700}
+.tabbar button:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:8px}
+/* toast */
+.toast{
+  position:absolute;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);
+  background:var(--brand-deep);color:#fff;font-size:.75rem;
+  padding:10px 18px;border-radius:99px;opacity:0;pointer-events:none;
+  transition:all .3s ease;white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="demo-ribbon">DEMO — 画面イメージ・データはすべてサンプルです</div>
+
+  <header class="app-head">
+    <div class="logo"><span class="paw">🐾</span>ペトリス手帳</div>
+    <div class="head-store">お迎え店舗<br><b>スーパーセンタームサシ新潟店</b></div>
+  </header>
+
+  <!-- ============ HOME ============ -->
+  <main class="screen active" id="scr-home">
+    <section class="pet-card">
+      <div class="pet-top">
+        <div class="pet-avatar">🐩</div>
+        <div>
+          <h2 class="pet-name">モコ</h2>
+          <p class="pet-sub">トイプードル ・ 女の子 ・ アプリコット</p>
+        </div>
+      </div>
+      <div class="pet-meta">
+        <div><b id="age-val">4ヶ月</b><span>ねんれい</span></div>
+        <div><b>2.1<small>kg</small></b><span>たいじゅう</span></div>
+        <div><b>4/15</b><span>おたんじょうび</span></div>
+      </div>
+      <div class="welcome-tag"><span class="dot"></span>2026年6月20日 ペトリスからお迎え ・ 手帳ID PT-26-04812</div>
+    </section>
+
+    <h3 class="sec-title">🛡️ 健康保証 <small>ペトリス生体保証</small></h3>
+    <div class="card guarantee">
+      <div class="g-stamp">保証<b>有効</b></div>
+      <div style="flex:1">
+        <h4>お迎え後1年間の健康保証つき</h4>
+        <p>のこり 287日（2027年6月19日まで）</p>
+        <div class="g-bar"><i></i></div>
+      </div>
+    </div>
+
+    <h3 class="sec-title">🔔 もうすぐの予定</h3>
+    <div class="card">
+      <div class="todo">
+        <div class="ico">💉</div>
+        <div><h5>混合ワクチン 3回目</h5><p>かかりつけ：さくら動物病院</p></div>
+        <div class="when">9/2 (水)</div>
+      </div>
+      <div class="todo">
+        <div class="ico">✂️</div>
+        <div><h5>トリミング予約</h5><p>ペトリス提携サロン</p></div>
+        <div class="when">9/13 (日)</div>
+      </div>
+      <div class="todo">
+        <div class="ico">🍚</div>
+        <div><h5>フードの残りが少なくなる頃</h5><p>前回購入から28日</p></div>
+        <div class="when">来週</div>
+      </div>
+    </div>
+
+    <h3 class="sec-title">✏️ きょうの記録</h3>
+    <div class="quick">
+      <button onclick="toast('体重を記録しました（デモ）')"><span>⚖️</span>体重</button>
+      <button onclick="toast('ごはんを記録しました（デモ）')"><span>🍚</span>ごはん</button>
+      <button onclick="toast('お散歩を記録しました（デモ）')"><span>🐕</span>散歩</button>
+      <button onclick="toast('うんちを記録しました（デモ）')"><span>💩</span>トイレ</button>
+    </div>
+  </main>
+
+  <!-- ============ RECORDS ============ -->
+  <main class="screen" id="scr-rec">
+    <h3 class="sec-title">📈 体重のうつりかわり <small>直近8週</small></h3>
+    <div class="card chart-card">
+      <h4>いまの体重</h4>
+      <div class="now">2.1 <small>kg（先週 +0.1kg）</small></div>
+      <div class="chart-wrap" id="chart"></div>
+    </div>
+
+    <h3 class="sec-title">🗒️ さいきんの記録</h3>
+    <div class="card">
+      <div class="log"><span class="d">8/23</span><span class="t">体重 2.1kg ・ 食欲ふつう</span><span class="tag">順調</span></div>
+      <div class="log"><span class="d">8/19</span><span class="t">さくら動物病院で健診</span><span class="tag">通院</span></div>
+      <div class="log"><span class="d">8/16</span><span class="t">体重 2.0kg</span><span class="tag">順調</span></div>
+      <div class="log"><span class="d">8/10</span><span class="t">フィラリア予防薬 投与</span><span class="tag">お薬</span></div>
+      <div class="log"><span class="d">8/9</span><span class="t">体重 1.95kg</span><span class="tag">順調</span></div>
+    </div>
+  </main>
+
+  <!-- ============ CERTIFICATES ============ -->
+  <main class="screen" id="scr-cert">
+    <h3 class="sec-title">📜 モコの大切な書類 <small>すべてここに</small></h3>
+    <div class="card">
+      <div class="cert">
+        <div class="c-ico">🏅</div>
+        <div><h5>血統書</h5><p>JKC ・ 2026年7月8日 発行</p></div>
+        <button class="open" onclick="toast('血統書を表示します（デモ）')">ひらく</button>
+      </div>
+      <div class="cert">
+        <div class="c-ico">🩺</div>
+        <div><h5>健康診断書</h5><p>お迎え時 獣医師チェック済み</p></div>
+        <button class="open" onclick="toast('健康診断書を表示します（デモ）')">ひらく</button>
+      </div>
+      <div class="cert">
+        <div class="c-ico">💉</div>
+        <div><h5>ワクチン接種証明</h5><p>2回接種済み ・ 次回 9/2</p></div>
+        <button class="open" onclick="toast('接種証明を表示します（デモ）')">ひらく</button>
+      </div>
+      <div class="cert">
+        <div class="c-ico">🔖</div>
+        <div><h5>マイクロチップ登録</h5><p>No. 392-14-6672-****</p></div>
+        <button class="open" onclick="toast('登録情報を表示します（デモ）')">ひらく</button>
+      </div>
+    </div>
+    <p class="cert-note">※ 紙の書類をなくしても大丈夫。ペットホテルや動物病院で、この画面をそのまま提示できます。</p>
+  </main>
+
+  <!-- ============ STORE ============ -->
+  <main class="screen" id="scr-store">
+    <h3 class="sec-title">🏬 いつものペトリス</h3>
+    <div class="store-hero">
+      <div class="s-ico">🏪</div>
+      <div>
+        <h4>スーパーセンタームサシ新潟店</h4>
+        <p>モコをお迎えした店舗 ・ 担当：スタッフ佐々木</p>
+      </div>
+    </div>
+
+    <div class="coupon">
+      <div class="off">10%<br>OFF</div>
+      <div>
+        <h5>アプリ会員限定・フードクーポン</h5>
+        <p>お迎え時と同じフードのご購入に使えます ・ 8/31まで</p>
+      </div>
+    </div>
+
+    <section class="premium">
+      <span class="p-tag">PREMIUM</span>
+      <h4>もっと安心の、プレミアム手帳</h4>
+      <ul>
+        <li>獣医師にアプリでいつでも相談</li>
+        <li>食欲・体重の変化をAIが見守り、異変をお知らせ</li>
+        <li>フードの定期便（買い忘れゼロ・店舗受取もOK）</li>
+        <li>家族みんなで手帳を共有</li>
+      </ul>
+      <p class="price"><b>月額 780円</b>（初月無料）</p>
+      <button onclick="toast('プレミアムのご案内（デモ）')">くわしく見る</button>
+    </section>
+  </main>
+
+  <!-- ============ TAB BAR ============ -->
+  <nav class="tabbar">
+    <button class="on" data-scr="scr-home"><span>🏠</span>うちの子</button>
+    <button data-scr="scr-rec"><span>📈</span>きろく</button>
+    <button data-scr="scr-cert"><span>📜</span>証明書</button>
+    <button data-scr="scr-store"><span>🏬</span>ペトリス</button>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+// tab switching
+document.querySelectorAll('.tabbar button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tabbar button').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById(btn.dataset.scr).classList.add('active');
+  });
+});
+// toast
+let tt;
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),1800);
+}
+// weight chart (inline SVG, 8 weeks)
+(function(){
+  const w=[1.55,1.62,1.7,1.78,1.88,1.95,2.0,2.1];
+  const labels=['7/5','7/12','7/19','7/26','8/2','8/9','8/16','8/23'];
+  const W=340,H=150,P=26;
+  const min=1.4,max=2.3;
+  const x=i=>P+i*(W-2*P)/(w.length-1);
+  const y=v=>H-P-(v-min)*(H-2*P)/(max-min);
+  let path='M'+w.map((v,i)=>`${x(i)},${y(v)}`).join(' L');
+  let area=path+` L${x(w.length-1)},${H-P} L${x(0)},${H-P} Z`;
+  let dots=w.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="#33604F"/>`).join('');
+  let lbls=labels.map((l,i)=>`<text x="${x(i)}" y="${H-8}" font-size="8.5" text-anchor="middle" fill="#8A817A">${l}</text>`).join('');
+  document.getElementById('chart').innerHTML=
+    `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="体重の推移グラフ">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#33604F" stop-opacity=".18"/>
+        <stop offset="1" stop-color="#33604F" stop-opacity="0"/>
+      </linearGradient></defs>
+      <path d="${area}" fill="url(#g)"/>
+      <path d="${path}" fill="none" stroke="#33604F" stroke-width="2.5" stroke-linecap="round"/>
+      ${dots}${lbls}
+    </svg>`;
+})();
+</script>
+</body>
+</html>

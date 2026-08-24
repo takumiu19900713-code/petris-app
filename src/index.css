@@ -1,0 +1,825 @@
+@import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
+
+:root {
+  --bg: #f6f3ed;
+  --card: #ffffff;
+  --brand: #33604f;
+  --brand-deep: #24463a;
+  --honey: #e39b3b;
+  --honey-soft: #f8e8cf;
+  --ink: #26221e;
+  --muted: #8a817a;
+  --line: #e8e2d8;
+  --ok: #4e8a6b;
+  --radius: 18px;
+  font-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  background: #ddd6ca;
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  line-height: 1.6;
+}
+
+button {
+  font-family: inherit;
+}
+
+.phone {
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-ribbon {
+  background: var(--brand-deep);
+  color: #eaf3ee;
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  padding: 6px 10px;
+}
+
+/* ---------- header ---------- */
+.app-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px 10px;
+}
+.logo {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: var(--brand);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo .paw {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+.head-store {
+  font-size: 0.66rem;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.4;
+}
+
+/* ---------- screens ---------- */
+.screen {
+  display: none;
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 18px 108px;
+  animation: fadeIn 0.25s ease;
+}
+.screen.active {
+  display: block;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .screen {
+    animation: none;
+  }
+}
+
+/* ---------- home: pet card ---------- */
+.pet-card {
+  background: linear-gradient(150deg, var(--brand) 0%, var(--brand-deep) 90%);
+  border-radius: 22px;
+  color: #f4f8f5;
+  padding: 20px 20px 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(36, 70, 58, 0.22);
+}
+.pet-card::after {
+  content: "🐾";
+  position: absolute;
+  right: -8px;
+  bottom: -14px;
+  font-size: 6rem;
+  opacity: 0.1;
+  transform: rotate(-12deg);
+}
+.pet-top {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.pet-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #fbefdd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  flex-shrink: 0;
+  border: 3px solid rgba(255, 255, 255, 0.55);
+}
+.pet-name {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+.pet-sub {
+  font-size: 0.75rem;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+.pet-meta {
+  display: flex;
+  gap: 0;
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 10px 0;
+}
+.pet-meta div {
+  flex: 1;
+  text-align: center;
+}
+.pet-meta div + div {
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+.pet-meta b {
+  display: block;
+  font-size: 1.05rem;
+  font-family: "Zen Maru Gothic", sans-serif;
+}
+.pet-meta span {
+  font-size: 0.62rem;
+  opacity: 0.8;
+  letter-spacing: 0.08em;
+}
+.welcome-tag {
+  margin-top: 14px;
+  font-size: 0.68rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.9;
+}
+.welcome-tag .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--honey);
+  flex-shrink: 0;
+}
+
+/* ---------- section ---------- */
+.sec-title {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin: 22px 2px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-title small {
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 0.68rem;
+  margin-left: auto;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+/* guarantee */
+.guarantee {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.g-stamp {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2.5px solid var(--ok);
+  color: var(--ok);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 900;
+  font-size: 0.62rem;
+  transform: rotate(-8deg);
+}
+.g-stamp b {
+  font-size: 0.95rem;
+}
+.guarantee h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+.guarantee p {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.g-bar {
+  height: 6px;
+  background: #efeae1;
+  border-radius: 3px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+.g-bar i {
+  display: block;
+  height: 100%;
+  background: var(--ok);
+  border-radius: 3px;
+}
+
+/* todo list */
+.todo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 2px;
+}
+.todo + .todo {
+  border-top: 1px dashed var(--line);
+}
+.todo .ico {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  background: var(--honey-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.todo h5 {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.todo p {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.todo .when {
+  margin-left: auto;
+  font-size: 0.68rem;
+  color: var(--honey);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* quick actions */
+.quick {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.quick button {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 4px 10px;
+  font-size: 0.66rem;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.quick button span {
+  font-size: 1.25rem;
+}
+.quick button:active {
+  background: var(--honey-soft);
+}
+
+/* ---------- records ---------- */
+.chart-card h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.chart-card .now {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 900;
+  font-size: 1.7rem;
+  color: var(--brand);
+}
+.chart-card .now small {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.chart-wrap {
+  margin-top: 6px;
+}
+.log {
+  display: flex;
+  gap: 12px;
+  padding: 11px 2px;
+  align-items: baseline;
+}
+.log + .log {
+  border-top: 1px dashed var(--line);
+}
+.log .d {
+  font-size: 0.68rem;
+  color: var(--muted);
+  width: 52px;
+  flex-shrink: 0;
+}
+.log .t {
+  font-size: 0.8rem;
+}
+.log .tag {
+  margin-left: auto;
+  font-size: 0.62rem;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: #edf3ef;
+  color: var(--brand);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ---------- certificates ---------- */
+.cert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 14px;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+.cert-highlight {
+  background-color: var(--honey-soft);
+  box-shadow: 0 0 0 1.5px var(--honey);
+  animation: certPulse 1.2s ease 2;
+}
+@keyframes certPulse {
+  0%,
+  100% {
+    background-color: var(--honey-soft);
+  }
+  50% {
+    background-color: #fbeed0;
+  }
+}
+.cert + .cert {
+  margin-top: 10px;
+}
+.cert .c-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  background: #efeae0;
+}
+.cert h5 {
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+.cert p {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.cert .open {
+  margin-left: auto;
+  font-size: 0.7rem;
+  color: var(--brand);
+  font-weight: 700;
+  border: 1.5px solid var(--brand);
+  border-radius: 99px;
+  padding: 4px 12px;
+  background: none;
+  cursor: pointer;
+}
+.cert-note {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-top: 10px;
+  padding: 0 4px;
+}
+
+/* ---------- store ---------- */
+.store-hero {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.store-hero .s-ico {
+  font-size: 1.8rem;
+}
+.store-hero h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+.store-hero p {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.coupon {
+  border: 1.5px dashed var(--honey);
+  background: #fdf7ec;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.coupon .off {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 900;
+  color: var(--honey);
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  text-align: center;
+}
+.coupon h5 {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.coupon p {
+  font-size: 0.66rem;
+  color: var(--muted);
+}
+
+/* premium */
+.premium {
+  margin-top: 18px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: linear-gradient(140deg, #3a2e1c, #5c4423);
+  color: #f7efdf;
+  padding: 18px;
+  position: relative;
+}
+.premium .p-tag {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  background: var(--honey);
+  color: #3a2e1c;
+  font-weight: 700;
+  border-radius: 99px;
+  padding: 3px 10px;
+  margin-bottom: 8px;
+}
+.premium h4 {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 900;
+  font-size: 1.05rem;
+}
+.premium ul {
+  list-style: none;
+  margin-top: 10px;
+}
+.premium li {
+  font-size: 0.74rem;
+  padding: 5px 0;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.premium li::before {
+  content: "✓";
+  color: var(--honey);
+  font-weight: 900;
+}
+.premium .price {
+  margin-top: 12px;
+  font-size: 0.8rem;
+}
+.premium .price b {
+  font-size: 1.25rem;
+  font-family: "Zen Maru Gothic", sans-serif;
+}
+.premium button {
+  margin-top: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  background: var(--honey);
+  color: #3a2e1c;
+  font-weight: 700;
+  padding: 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* ---------- tab bar ---------- */
+.tabbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--line);
+  display: flex;
+  padding: 8px 6px calc(10px + env(safe-area-inset-bottom));
+}
+.tabbar button {
+  flex: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.62rem;
+  color: var(--muted);
+  padding: 4px 0;
+}
+.tabbar button span {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.tabbar button.on {
+  color: var(--brand);
+  font-weight: 700;
+}
+.tabbar button:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ---------- share trigger buttons ---------- */
+.pet-card {
+  position: relative;
+}
+.share-trigger {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.16);
+  color: #f4f8f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.share-trigger:active {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0.94);
+}
+
+.cert {
+  gap: 8px;
+}
+.cert .cert-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cert .open {
+  margin-left: 0;
+}
+.cert-share {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.cert-share:active {
+  background: var(--honey-soft);
+}
+
+.coupon-body {
+  flex: 1;
+}
+.coupon-invite {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: none;
+  color: var(--brand);
+  font-weight: 700;
+  font-size: 0.68rem;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ---------- share sheet ---------- */
+.sheet-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+}
+.sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 24, 22, 0.42);
+  animation: sheetFadeIn 0.2s ease;
+}
+@keyframes sheetFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.sheet-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--card);
+  border-radius: 22px 22px 0 0;
+  padding: 10px 20px calc(20px + env(safe-area-inset-bottom));
+  box-shadow: 0 -12px 32px rgba(36, 70, 58, 0.18);
+  animation: sheetSlideUp 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes sheetSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.sheet-grabber {
+  width: 36px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--line);
+  margin: 4px auto 14px;
+}
+.sheet-title {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 10px;
+}
+.sheet-preview {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.sheet-preview p {
+  font-size: 0.76rem;
+  color: var(--ink);
+  line-height: 1.7;
+}
+.sheet-preview p + p {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+.sheet-actions {
+  display: flex;
+  gap: 10px;
+}
+.sheet-action {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 16px;
+  padding: 14px 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+}
+.sheet-action:active {
+  transform: scale(0.97);
+}
+.sheet-action.line {
+  border-color: #06c755;
+  color: #06c755;
+}
+.sheet-ico {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.line-ico {
+  background: #06c755;
+}
+.copy-ico {
+  background: var(--honey-soft);
+}
+.sheet-cancel {
+  width: 100%;
+  margin-top: 14px;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* toast */
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: 96px;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--brand-deep);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 10px 18px;
+  border-radius: 99px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
