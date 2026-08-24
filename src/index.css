@@ -264,39 +264,63 @@ button {
   margin-bottom: 12px;
 }
 
-/* guarantee */
-.guarantee {
+/* protect card: guarantee + insurance, compact so it stays above the fold */
+.protect-card {
+  padding: 4px 16px;
+}
+.protect-row {
   display: flex;
+  align-items: center;
   gap: 12px;
-  align-items: center;
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: default;
 }
-.g-stamp {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
+.protect-row + .protect-row {
+  border-top: 1px dashed var(--line);
+}
+.protect-row.tappable {
+  cursor: pointer;
+}
+.protect-row.tappable:active {
+  background: var(--honey-soft);
+  margin: 0 -16px;
+  padding: 12px 16px;
+  border-radius: 12px;
+}
+.protect-pill {
   flex-shrink: 0;
-  border: 2.5px solid var(--ok);
-  color: var(--ok);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: "Zen Maru Gothic", sans-serif;
-  font-weight: 900;
   font-size: 0.62rem;
-  transform: rotate(-8deg);
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 99px;
+  color: #fff;
 }
-.g-stamp b {
-  font-size: 0.95rem;
+.protect-pill.ok {
+  background: var(--ok);
 }
-.guarantee h4 {
-  font-size: 0.88rem;
+.protect-body {
+  flex: 1;
+  min-width: 0;
+}
+.protect-body h4 {
+  font-size: 0.82rem;
   font-weight: 700;
 }
-.guarantee p {
-  font-size: 0.72rem;
+.protect-body p {
+  font-size: 0.68rem;
   color: var(--muted);
   margin-top: 2px;
+}
+.protect-chevron {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 1.2rem;
+  font-weight: 900;
 }
 .g-bar {
   height: 6px;
@@ -305,56 +329,15 @@ button {
   margin-top: 8px;
   overflow: hidden;
 }
+.g-bar.mini {
+  height: 4px;
+  margin-top: 5px;
+}
 .g-bar i {
   display: block;
   height: 100%;
   background: var(--ok);
   border-radius: 3px;
-}
-
-/* insurance card */
-.insurance {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.insurance-top {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.insurance-status {
-  background: var(--ok);
-  color: #fff;
-  font-size: 0.62rem;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 99px;
-  flex-shrink: 0;
-}
-.insurance-top h4 {
-  font-size: 0.88rem;
-  font-weight: 700;
-}
-.insurance p {
-  font-size: 0.72rem;
-  color: var(--muted);
-}
-.insurance-actions {
-  display: flex;
-}
-.insurance-open {
-  font-size: 0.7rem;
-  color: var(--brand);
-  font-weight: 700;
-  border: 1.5px solid var(--brand);
-  border-radius: 99px;
-  padding: 6px 14px;
-  background: none;
-  cursor: pointer;
-}
-.insurance-open:active {
-  background: var(--honey-soft);
 }
 
 /* todo list */

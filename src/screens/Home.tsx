@@ -1,6 +1,5 @@
 import {
   pet,
-  guarantee,
   guaranteeEndDateLabel,
   guaranteeRemainingDays,
   guaranteeProgressPct,
@@ -71,44 +70,38 @@ export default function Home({ onQuickRecord, onShare, onShowInsurance }: Props)
         </div>
       </section>
 
-      <h3 className="sec-title">
-        🛡️ 健康保証 <small>{guarantee.type}</small>
-      </h3>
-      <div className="card guarantee">
-        <div className="g-stamp">
-          保証
-          <b>有効</b>
-        </div>
-        <div style={{ flex: 1 }}>
-          <h4>お迎え後1年間の健康保証つき</h4>
-          <p>
-            のこり {guaranteeRemainingDays}日（{guaranteeEndDateLabel}まで）
-          </p>
-          <div className="g-bar">
-            <i style={{ width: `${guaranteeProgressPct}%` }}></i>
+      <h3 className="sec-title">🛡️ 保証・ほけん</h3>
+      <div className="card protect-card">
+        <div className="protect-row">
+          <span className="protect-pill ok">有効</span>
+          <div className="protect-body">
+            <h4>健康保証</h4>
+            <p>
+              のこり {guaranteeRemainingDays}日（{guaranteeEndDateLabel}まで）
+            </p>
+            <div className="g-bar mini">
+              <i style={{ width: `${guaranteeProgressPct}%` }}></i>
+            </div>
           </div>
         </div>
-      </div>
-
-      <h3 className="sec-title">
-        🐶 ペット保険 <small>{insurance.provider}</small>
-      </h3>
-      <div className="card insurance">
-        <div className="insurance-top">
-          <span className="insurance-status">
+        <button
+          className="protect-row tappable"
+          onClick={onShowInsurance}
+          aria-label="ペット保険の加入情報・補償内容を見る"
+        >
+          <span className="protect-pill ok">
             {insurance.status === "enrolled" ? "加入中" : "未加入"}
           </span>
-          <h4>{insurance.planName}</h4>
-        </div>
-        <p>
-          月々{insurance.monthlyPremium.toLocaleString()}円 ・ 通院/入院/手術を
-          {insurance.coverageRate}%補償
-        </p>
-        <div className="insurance-actions">
-          <button className="insurance-open" onClick={onShowInsurance}>
-            加入情報・補償内容を見る
-          </button>
-        </div>
+          <div className="protect-body">
+            <h4>ペット保険（{insurance.provider}）</h4>
+            <p>
+              {insurance.planName} ・ 月々
+              {insurance.monthlyPremium.toLocaleString()}円 ・{" "}
+              {insurance.coverageRate}%補償
+            </p>
+          </div>
+          <span className="protect-chevron">›</span>
+        </button>
       </div>
 
       <h3 className="sec-title">🔔 もうすぐの予定</h3>
