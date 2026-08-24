@@ -95,6 +95,30 @@ button {
   text-align: right;
   line-height: 1.4;
 }
+.head-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.about-trigger {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: var(--card);
+  color: var(--brand);
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-style: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.about-trigger:active {
+  background: var(--honey-soft);
+}
 
 /* ---------- screens ---------- */
 .screen {
@@ -707,11 +731,89 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
+  max-height: 88%;
+  overflow-y: auto;
   background: var(--card);
   border-radius: 22px 22px 0 0;
   padding: 10px 20px calc(20px + env(safe-area-inset-bottom));
   box-shadow: 0 -12px 32px rgba(36, 70, 58, 0.18);
   animation: sheetSlideUp 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- about sheet ---------- */
+.about-eyebrow {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: var(--honey);
+  font-weight: 700;
+}
+.about-tagline {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: var(--brand-deep);
+  line-height: 1.4;
+  margin: 4px 0 10px;
+}
+.about-lead {
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.7;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--line);
+  margin-bottom: 14px;
+}
+.about-h5 {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  margin-bottom: 8px;
+}
+.about-list {
+  list-style: none;
+}
+.about-list li {
+  font-size: 0.76rem;
+  line-height: 1.6;
+  padding: 5px 0 5px 20px;
+  position: relative;
+  color: var(--ink);
+}
+.about-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--brand);
+  font-weight: 900;
+}
+.about-list.compact li {
+  font-size: 0.7rem;
+  padding: 4px 0 4px 18px;
+}
+.about-benefit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 16px 0 4px;
+}
+.about-benefit-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 12px 8px;
+}
+.about-benefit-card h6 {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  margin-bottom: 4px;
+}
+.about-benefit-card.store {
+  background: var(--honey-soft);
+  border-color: #eecf9f;
+}
+.about-benefit-card.store .about-list li::before {
+  color: var(--honey);
 }
 @keyframes sheetSlideUp {
   from {

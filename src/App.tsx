@@ -5,6 +5,7 @@ import Records from "./screens/Records";
 import Certificates from "./screens/Certificates";
 import Store from "./screens/Store";
 import ShareSheet from "./components/ShareSheet";
+import AboutSheet from "./components/AboutSheet";
 import type { SharePayload } from "./utils/share";
 import { buildShareUrl, readTabFromUrl, type TabId } from "./utils/deepLink";
 
@@ -20,6 +21,7 @@ function App() {
   const [toastMsg, setToastMsg] = useState("");
   const [toastVisible, setToastVisible] = useState(false);
   const [sharePayload, setSharePayload] = useState<SharePayload | null>(null);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const timerRef = useRef<number | undefined>(undefined);
 
   const showToast = (msg: string) => {
@@ -44,10 +46,19 @@ function App() {
         <div className="logo">
           <span className="paw">🐾</span>ペトリス手帳
         </div>
-        <div className="head-store">
-          お迎え店舗
-          <br />
-          <b>{store.name}</b>
+        <div className="head-right">
+          <div className="head-store">
+            お迎え店舗
+            <br />
+            <b>{store.name}</b>
+          </div>
+          <button
+            className="about-trigger"
+            onClick={() => setAboutOpen(true)}
+            aria-label="ペトリス手帳のコンセプトについて"
+          >
+            i
+          </button>
         </div>
       </header>
 
@@ -84,6 +95,7 @@ function App() {
         onClose={() => setSharePayload(null)}
         onCopied={() => showToast("リンクをコピーしました")}
       />
+      <AboutSheet open={aboutOpen} onClose={() => setAboutOpen(false)} />
     </div>
   );
 }
