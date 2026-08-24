@@ -46,21 +46,18 @@ function App() {
         <div className="logo">
           <span className="paw">🐾</span>ペトリス手帳
         </div>
-        <div className="head-right">
-          <div className="head-store">
-            お迎え店舗
-            <br />
-            <b>{store.name}</b>
-          </div>
-          <button
-            className="about-trigger"
-            onClick={() => setAboutOpen(true)}
-            aria-label="ペトリス手帳のコンセプトについて"
-          >
-            i
-          </button>
+        <div className="head-store">
+          お迎え店舗
+          <br />
+          <b>{store.name}</b>
         </div>
       </header>
+
+      <button className="concept-banner" onClick={() => setAboutOpen(true)}>
+        <span className="concept-banner-ico">🐾</span>
+        このアプリのコンセプト・メリットを見る
+        <span className="concept-banner-arrow">›</span>
+      </button>
 
       <main className={`screen${tab === "home" ? " active" : ""}`}>
         <Home onQuickRecord={showToast} onShare={setSharePayload} />
