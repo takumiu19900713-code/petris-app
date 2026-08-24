@@ -6,6 +6,7 @@ import {
   ownerBenefits,
   storeBenefits,
   premiumPriceLine,
+  draftNote,
 } from "../data/concept";
 
 interface Props {
@@ -36,7 +37,10 @@ export default function AboutSheet({ open, onClose, onShareApp }: Props) {
         aria-label="ペトリス手帳について"
       >
         <div className="sheet-grabber" />
-        <p className="about-eyebrow">CONCEPT</p>
+        <div className="about-eyebrow-row">
+          <p className="about-eyebrow">CONCEPT</p>
+          <span className="about-draft-badge">たたき台 ver.1</span>
+        </div>
         <h4 className="about-tagline">
           {conceptTagline.split("\n").map((line, i) => (
             <span key={i}>
@@ -76,6 +80,7 @@ export default function AboutSheet({ open, onClose, onShareApp }: Props) {
         <p className="about-premium-note">
           🌟 {premiumPriceLine}で、さらに手厚いプレミアム手帳になります。
         </p>
+        <p className="about-draft-note">{draftNote}</p>
 
         <button className="sheet-action line about-share" onClick={onShareApp}>
           <span className="sheet-ico line-ico" aria-hidden="true">

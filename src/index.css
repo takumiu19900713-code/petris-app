@@ -774,11 +774,30 @@ button {
 }
 
 /* ---------- about sheet ---------- */
+.about-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 .about-eyebrow {
   font-size: 0.62rem;
   letter-spacing: 0.16em;
   color: var(--honey);
   font-weight: 700;
+}
+.about-draft-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 2px 8px;
+}
+.about-draft-note {
+  margin-top: 10px;
+  font-size: 0.68rem;
+  color: var(--muted);
+  line-height: 1.6;
 }
 .about-tagline {
   font-family: "Zen Maru Gothic", sans-serif;

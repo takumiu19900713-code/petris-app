@@ -18,6 +18,7 @@ import {
   conceptTagline,
   conceptLead,
   premiumPriceLine,
+  draftNote,
 } from "./data/concept";
 
 const TABS: { id: TabId; icon: string; label: string }[] = [
@@ -59,7 +60,7 @@ function App() {
     setSharePayload({
       title: "ペトリス手帳をLINEで紹介",
       lines: [`🐾 ${taglineOneLine}`, premiumPriceLine],
-      text: `🐾 ペトリス手帳（デモ）\n${taglineOneLine}\n${conceptLead}\n${premiumPriceLine}で使えます。\nぜひ見てください！\n${url}`,
+      text: `🐾 ペトリス手帳（デモ）\n${taglineOneLine}\n${conceptLead}\n${premiumPriceLine}で使えます。\nぜひ見てください！\n${draftNote}\n${url}`,
     });
   };
 

@@ -23,3 +23,6 @@ export const storeBenefits = [
 
 export const premiumPriceLine = "プレミアム手帳は月額780円（初月無料）";
 
+export const draftNote =
+  "※ たたき台の段階です。ご意見・ご感想をお聞かせいただけると嬉しいです。";
+
