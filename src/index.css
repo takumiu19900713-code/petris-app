@@ -569,11 +569,13 @@ button {
   .toast,
   .sheet-layer,
   .cert-share,
+  .cert-print,
   .cert .open,
   .print-btn,
   .share-trigger,
   .insurance-open,
-  .coupon-invite {
+  .coupon-invite,
+  .print-hide {
     display: none !important;
   }
   .print-only-head {
@@ -799,7 +801,8 @@ button {
 .cert .open {
   margin-left: 0;
 }
-.cert-share {
+.cert-share,
+.cert-print {
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -813,7 +816,8 @@ button {
   cursor: pointer;
   flex-shrink: 0;
 }
-.cert-share:active {
+.cert-share:active,
+.cert-print:active {
   background: var(--honey-soft);
 }
 

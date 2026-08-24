@@ -10,6 +10,7 @@ interface Props {
 
 export default function Certificates({ onOpen, onShare }: Props) {
   const [highlightId, setHighlightId] = useState<string | null>(null);
+  const [printCertId, setPrintCertId] = useState<string | null>(null);
   const highlightRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -21,6 +22,12 @@ export default function Certificates({ onOpen, onShare }: Props) {
     return () => window.clearTimeout(t);
   }, []);
 
+  useEffect(() => {
+    const reset = () => setPrintCertId(null);
+    window.addEventListener("afterprint", reset);
+    return () => window.removeEventListener("afterprint", reset);
+  }, []);
+
   const shareCert = (id: string, title: string, detail: string) => {
     const url = buildShareUrl("certificates", { cert: id });
     onShare({
@@ -30,15 +37,31 @@ export default function Certificates({ onOpen, onShare }: Props) {
     });
   };
 
+  const printOne = (id: string) => {
+    setPrintCertId(id);
+    window.setTimeout(() => window.print(), 50);
+  };
+
+  const printAll = () => {
+    setPrintCertId(null);
+    window.setTimeout(() => window.print(), 50);
+  };
+
+  const printTarget = certificates.find((c) => c.id === printCertId);
+
   return (
     <>
       <div className="print-only-head">
-        <h3>{pet.name}の証明書一式</h3>
+        <h3>
+          {printTarget ? `${pet.name}の${printTarget.title}` : `${pet.name}の証明書一式`}
+        </h3>
         <p>ペトリス手帳 ・ 手帳ID {pet.techoId}</p>
       </div>
 
-      <h3 className="sec-title">📷 お迎え記念写真</h3>
-      <div className="card photo-card">
+      <h3 className={`sec-title${printCertId ? " print-hide" : ""}`}>
+        📷 お迎え記念写真
+      </h3>
+      <div className={`card photo-card${printCertId ? " print-hide" : ""}`}>
         <div className="photo-frame">
           <span>{pet.avatarEmoji}</span>
         </div>
@@ -50,13 +73,15 @@ export default function Certificates({ onOpen, onShare }: Props) {
       <h3 className="sec-title">
         📜 {pet.name}の大切な書類 <small>すべてここに</small>
       </h3>
-      <button className="print-btn" onClick={() => window.print()}>
-        🖨️ この画面を印刷する
+      <button className="print-btn" onClick={printAll}>
+        🖨️ まとめて印刷する
       </button>
       <div className="card">
         {certificates.map((c) => (
           <div
-            className={`cert${highlightId === c.id ? " cert-highlight" : ""}`}
+            className={`cert${highlightId === c.id ? " cert-highlight" : ""}${
+              printCertId && printCertId !== c.id ? " print-hide" : ""
+            }`}
             key={c.id}
             ref={highlightId === c.id ? highlightRef : undefined}
           >
@@ -74,6 +99,13 @@ export default function Certificates({ onOpen, onShare }: Props) {
                 ↗
               </button>
               <button
+                className="cert-print"
+                onClick={() => printOne(c.id)}
+                aria-label={`${c.title}だけを印刷する`}
+              >
+                🖨️
+              </button>
+              <button
                 className="open"
                 onClick={() => onOpen(`${c.title}を表示します（デモ）`)}
               >
@@ -85,7 +117,7 @@ export default function Certificates({ onOpen, onShare }: Props) {
       </div>
       <p className="cert-note">
         ※
-        紙の書類をなくしても大丈夫。ペットホテルや動物病院で、この画面をそのまま提示できます。LINEで事前に送っておくこともできます。
+        紙の書類をなくしても大丈夫。ペットホテルや動物病院で、この画面をそのまま提示できます。LINEで事前に送っておくこともできます。各証明書の🖨️から1枚ずつ印刷することもできます。
       </p>
     </>
   );
