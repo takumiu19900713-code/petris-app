@@ -312,6 +312,51 @@ button {
   border-radius: 3px;
 }
 
+/* insurance card */
+.insurance {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.insurance-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.insurance-status {
+  background: var(--ok);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+  flex-shrink: 0;
+}
+.insurance-top h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+.insurance p {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.insurance-actions {
+  display: flex;
+}
+.insurance-open {
+  font-size: 0.7rem;
+  color: var(--brand);
+  font-weight: 700;
+  border: 1.5px solid var(--brand);
+  border-radius: 99px;
+  padding: 6px 14px;
+  background: none;
+  cursor: pointer;
+}
+.insurance-open:active {
+  background: var(--honey-soft);
+}
+
 /* todo list */
 .todo {
   display: flex;
@@ -819,6 +864,47 @@ button {
 }
 .about-benefit-card.store .about-list li::before {
   color: var(--honey);
+}
+
+/* ---------- insurance sheet ---------- */
+.ins-sheet-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.ins-badge {
+  background: var(--ok);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+.ins-provider {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+.ins-plan-name {
+  margin-bottom: 12px;
+}
+.ins-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 10px;
+}
+.ins-label {
+  display: block;
+  font-size: 0.62rem;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.ins-value {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
 }
 @keyframes sheetSlideUp {
   from {

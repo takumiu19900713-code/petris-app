@@ -5,6 +5,7 @@ import {
   guaranteeRemainingDays,
   guaranteeProgressPct,
   schedules,
+  insurance,
 } from "../data/mockData";
 import type { SharePayload } from "../utils/share";
 import { buildShareUrl } from "../utils/deepLink";
@@ -12,9 +13,10 @@ import { buildShareUrl } from "../utils/deepLink";
 interface Props {
   onQuickRecord: (msg: string) => void;
   onShare: (payload: SharePayload) => void;
+  onShowInsurance: () => void;
 }
 
-export default function Home({ onQuickRecord, onShare }: Props) {
+export default function Home({ onQuickRecord, onShare, onShowInsurance }: Props) {
   const shareWelcome = () => {
     const url = buildShareUrl("home");
     onShare({
@@ -85,6 +87,27 @@ export default function Home({ onQuickRecord, onShare }: Props) {
           <div className="g-bar">
             <i style={{ width: `${guaranteeProgressPct}%` }}></i>
           </div>
+        </div>
+      </div>
+
+      <h3 className="sec-title">
+        🐶 ペット保険 <small>{insurance.provider}</small>
+      </h3>
+      <div className="card insurance">
+        <div className="insurance-top">
+          <span className="insurance-status">
+            {insurance.status === "enrolled" ? "加入中" : "未加入"}
+          </span>
+          <h4>{insurance.planName}</h4>
+        </div>
+        <p>
+          月々{insurance.monthlyPremium.toLocaleString()}円 ・ 通院/入院/手術を
+          {insurance.coverageRate}%補償
+        </p>
+        <div className="insurance-actions">
+          <button className="insurance-open" onClick={onShowInsurance}>
+            加入情報・補償内容を見る
+          </button>
         </div>
       </div>
 

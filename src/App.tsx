@@ -6,8 +6,14 @@ import Certificates from "./screens/Certificates";
 import Store from "./screens/Store";
 import ShareSheet from "./components/ShareSheet";
 import AboutSheet from "./components/AboutSheet";
+import InsuranceSheet from "./components/InsuranceSheet";
 import type { SharePayload } from "./utils/share";
-import { buildShareUrl, readTabFromUrl, type TabId } from "./utils/deepLink";
+import {
+  buildShareUrl,
+  readParamFromUrl,
+  readTabFromUrl,
+  type TabId,
+} from "./utils/deepLink";
 
 const TABS: { id: TabId; icon: string; label: string }[] = [
   { id: "home", icon: "🏠", label: "うちの子" },
@@ -22,6 +28,9 @@ function App() {
   const [toastVisible, setToastVisible] = useState(false);
   const [sharePayload, setSharePayload] = useState<SharePayload | null>(null);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [insuranceOpen, setInsuranceOpen] = useState(
+    () => readParamFromUrl("insurance") === "1",
+  );
   const timerRef = useRef<number | undefined>(undefined);
 
   const showToast = (msg: string) => {
@@ -60,7 +69,11 @@ function App() {
       </button>
 
       <main className={`screen${tab === "home" ? " active" : ""}`}>
-        <Home onQuickRecord={showToast} onShare={setSharePayload} />
+        <Home
+          onQuickRecord={showToast}
+          onShare={setSharePayload}
+          onShowInsurance={() => setInsuranceOpen(true)}
+        />
       </main>
       <main className={`screen${tab === "records" ? " active" : ""}`}>
         <Records />
@@ -93,6 +106,12 @@ function App() {
         onCopied={() => showToast("リンクをコピーしました")}
       />
       <AboutSheet open={aboutOpen} onClose={() => setAboutOpen(false)} />
+      <InsuranceSheet
+        open={insuranceOpen}
+        onClose={() => setInsuranceOpen(false)}
+        onShare={setSharePayload}
+        onContact={showToast}
+      />
     </div>
   );
 }

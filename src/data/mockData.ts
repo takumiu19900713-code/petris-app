@@ -8,6 +8,7 @@ import type {
   Schedule,
   Coupon,
   WeightPoint,
+  Insurance,
 } from "../types";
 
 export const store: Store = {
@@ -186,6 +187,24 @@ export const coupon: Coupon = {
   title: "アプリ会員限定・フードクーポン",
   discount: "10%OFF",
   expiresAt: "8/31まで",
+};
+
+export const insurance: Insurance = {
+  petId: pet.id,
+  status: "enrolled",
+  provider: "どうぶつ損保",
+  planName: "わんにゃん安心プラン70",
+  policyNo: "DP-2026-771049",
+  monthlyPremium: 2980,
+  coverageRate: 70,
+  coverageSummary: [
+    "通院・入院・手術の費用を70%補償",
+    "年間補償上限 70万円まで",
+    "持病・年齢による加入制限なし（ペトリス提携プラン）",
+    "動物病院の窓口でそのまま提示してOK",
+  ],
+  since: "2026年6月20日",
+  nextRenewal: "2027年6月20日",
 };
 
 export const premiumFeatures: string[] = [

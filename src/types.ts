@@ -99,3 +99,16 @@ export interface WeightPoint {
   label: string;
   kg: number;
 }
+
+export interface Insurance {
+  petId: string;
+  status: "enrolled" | "none";
+  provider: string;
+  planName: string;
+  policyNo: string;
+  monthlyPremium: number;
+  coverageRate: number;
+  coverageSummary: string[];
+  since: string;
+  nextRenewal: string;
+}
