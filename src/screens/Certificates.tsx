@@ -32,9 +32,27 @@ export default function Certificates({ onOpen, onShare }: Props) {
 
   return (
     <>
+      <div className="print-only-head">
+        <h3>{pet.name}の証明書一式</h3>
+        <p>ペトリス手帳 ・ 手帳ID {pet.techoId}</p>
+      </div>
+
+      <h3 className="sec-title">📷 お迎え記念写真</h3>
+      <div className="card photo-card">
+        <div className="photo-frame">
+          <span>{pet.avatarEmoji}</span>
+        </div>
+        <p className="photo-caption">
+          {pet.welcomeDate} お迎え ・ {pet.name}（サンプル画像）
+        </p>
+      </div>
+
       <h3 className="sec-title">
         📜 {pet.name}の大切な書類 <small>すべてここに</small>
       </h3>
+      <button className="print-btn" onClick={() => window.print()}>
+        🖨️ この画面を印刷する
+      </button>
       <div className="card">
         {certificates.map((c) => (
           <div

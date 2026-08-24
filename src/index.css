@@ -513,6 +513,101 @@ button {
   padding: 0 4px;
 }
 
+/* photo card */
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.photo-frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  background: linear-gradient(150deg, var(--brand) 0%, var(--brand-deep) 90%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(36, 70, 58, 0.18);
+}
+.photo-frame span {
+  font-size: 4.5rem;
+}
+.photo-caption {
+  font-size: 0.7rem;
+  color: var(--muted);
+  align-self: flex-start;
+}
+
+/* print */
+.print-btn {
+  display: block;
+  margin: 0 0 10px auto;
+  font-size: 0.7rem;
+  color: var(--brand);
+  font-weight: 700;
+  border: 1.5px solid var(--brand);
+  border-radius: 99px;
+  padding: 6px 14px;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.print-btn:active {
+  background: var(--honey-soft);
+}
+.print-only-head {
+  display: none;
+}
+@media print {
+  .demo-ribbon,
+  .concept-banner,
+  .app-head,
+  .tabbar,
+  .toast,
+  .sheet-layer,
+  .cert-share,
+  .cert .open,
+  .print-btn,
+  .share-trigger,
+  .insurance-open,
+  .coupon-invite {
+    display: none !important;
+  }
+  .print-only-head {
+    display: block;
+    margin-bottom: 16px;
+  }
+  .print-only-head h3 {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-size: 1.1rem;
+  }
+  .print-only-head p {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  body,
+  .phone,
+  .screen {
+    background: #fff !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .phone {
+    max-width: 100% !important;
+    box-shadow: none !important;
+  }
+  .screen {
+    padding-bottom: 0 !important;
+  }
+  .photo-frame {
+    box-shadow: none;
+    border: 1px solid var(--line);
+  }
+}
+
 /* ---------- store ---------- */
 .store-hero {
   background: var(--card);
