@@ -14,6 +14,11 @@ import {
   readTabFromUrl,
   type TabId,
 } from "./utils/deepLink";
+import {
+  conceptTagline,
+  conceptLead,
+  premiumPriceLine,
+} from "./data/concept";
 
 const TABS: { id: TabId; icon: string; label: string }[] = [
   { id: "home", icon: "🏠", label: "うちの子" },
@@ -27,7 +32,9 @@ function App() {
   const [toastMsg, setToastMsg] = useState("");
   const [toastVisible, setToastVisible] = useState(false);
   const [sharePayload, setSharePayload] = useState<SharePayload | null>(null);
-  const [aboutOpen, setAboutOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(
+    () => readParamFromUrl("about") === "1",
+  );
   const [insuranceOpen, setInsuranceOpen] = useState(
     () => readParamFromUrl("insurance") === "1",
   );
@@ -43,6 +50,17 @@ function App() {
   const changeTab = (id: TabId) => {
     setTab(id);
     window.history.replaceState(null, "", buildShareUrl(id));
+  };
+
+  const shareApp = () => {
+    setAboutOpen(false);
+    const url = buildShareUrl("home", { about: "1" });
+    const taglineOneLine = conceptTagline.replace(/\n/g, "");
+    setSharePayload({
+      title: "ペトリス手帳をLINEで紹介",
+      lines: [`🐾 ${taglineOneLine}`, premiumPriceLine],
+      text: `🐾 ペトリス手帳（デモ）\n${taglineOneLine}\n${conceptLead}\n${premiumPriceLine}で使えます。\nぜひ見てください！\n${url}`,
+    });
   };
 
   useEffect(() => () => window.clearTimeout(timerRef.current), []);
@@ -105,7 +123,11 @@ function App() {
         onClose={() => setSharePayload(null)}
         onCopied={() => showToast("リンクをコピーしました")}
       />
-      <AboutSheet open={aboutOpen} onClose={() => setAboutOpen(false)} />
+      <AboutSheet
+        open={aboutOpen}
+        onClose={() => setAboutOpen(false)}
+        onShareApp={shareApp}
+      />
       <InsuranceSheet
         open={insuranceOpen}
         onClose={() => setInsuranceOpen(false)}

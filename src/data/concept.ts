@@ -20,3 +20,6 @@ export const storeBenefits = [
   "クーポン・プレミアムで再来店と新しい収益機会を創出",
   "保険連携やフード定期便など、将来の拡張がしやすい",
 ];
+
+export const premiumPriceLine = "プレミアム手帳は月額780円（初月無料）";
+

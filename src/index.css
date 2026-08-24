@@ -848,6 +848,27 @@ button {
 .about-benefit-card.store .about-list li::before {
   color: var(--honey);
 }
+.about-premium-note {
+  margin-top: 16px;
+  font-size: 0.72rem;
+  color: var(--brand-deep);
+  background: var(--honey-soft);
+  border: 1px solid #eecf9f;
+  border-radius: 12px;
+  padding: 10px 12px;
+  line-height: 1.6;
+}
+.about-share {
+  margin-top: 12px;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  padding: 12px;
+}
+.about-share .sheet-ico {
+  width: 26px;
+  height: 26px;
+}
 
 /* ---------- insurance sheet ---------- */
 .ins-sheet-head {

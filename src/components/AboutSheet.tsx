@@ -5,14 +5,16 @@ import {
   conceptPurpose,
   ownerBenefits,
   storeBenefits,
+  premiumPriceLine,
 } from "../data/concept";
 
 interface Props {
   open: boolean;
   onClose: () => void;
+  onShareApp: () => void;
 }
 
-export default function AboutSheet({ open, onClose }: Props) {
+export default function AboutSheet({ open, onClose, onShareApp }: Props) {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -71,6 +73,21 @@ export default function AboutSheet({ open, onClose }: Props) {
           </div>
         </div>
 
+        <p className="about-premium-note">
+          🌟 {premiumPriceLine}で、さらに手厚いプレミアム手帳になります。
+        </p>
+
+        <button className="sheet-action line about-share" onClick={onShareApp}>
+          <span className="sheet-ico line-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22">
+              <path
+                fill="#fff"
+                d="M12 3C6.98 3 3 6.36 3 10.5c0 3.7 3.14 6.79 7.4 7.39.29.06.68.2.78.45.09.23.06.58.03.81l-.13.79c-.04.23-.18.9.79.49.97-.41 5.23-3.08 7.14-5.27C20.4 13.6 21 12.13 21 10.5 21 6.36 17.02 3 12 3Z"
+              />
+            </svg>
+          </span>
+          この内容をLINEで紹介する
+        </button>
         <button className="sheet-cancel" onClick={onClose}>
           とじる
         </button>
